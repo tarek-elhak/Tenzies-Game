@@ -5,16 +5,21 @@ import {nanoid} from "nanoid"
 export default function App()
 {
 
-    const [dice,setDice] = React.useState(()=>newDice())
+    const [dice,setDice] = React.useState(()=>newDiceArray())
 
 
-    function newDice(){
+    function newDiceArray(){
         const dice = [];
 
         for(let i = 0 ; i <= 9 ; i++){
-            dice.push({id: nanoid() , value: Math.ceil(Math.random() * 6), isHeld: false})
+            dice.push(newDice())
         }
         return dice;
+    }
+
+    function newDice()
+    {
+        return {id: nanoid() , value: Math.ceil(Math.random() * 6), isHeld: false};
     }
 
     const diceElements = dice.map(die => {
@@ -23,7 +28,11 @@ export default function App()
 
     function rollDice()
     {
-        setDice(newDice)
+        setDice(prevDice => {
+            return prevDice.map(oldDice => {
+                return oldDice.isHeld ? oldDice : newDice()
+            })
+        })
     }
     function toggleDie(id)
     {
