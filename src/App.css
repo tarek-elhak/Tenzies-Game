@@ -1,0 +1,61 @@
+main
+{
+    width: 400px;
+    height: 400px;
+    background: #F5F5F5;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+main .title
+{
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 30px;
+    letter-spacing: -0.03em;
+    padding-top: 30px;
+    color: #2B283A;
+}
+main .description
+{
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: -0.03em;
+    margin: 8px 40px 30px;
+    color: #4A4E74;
+    max-width: 250px;
+    text-align: center;
+}
+.dice
+{
+    margin-inline: auto;
+    margin-bottom: 25px;
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    justify-items: center;
+    gap: 30px;
+}
+.roll--btn
+{
+    margin: auto;
+    width: 100px;
+    height: 40px;
+    background-color: #5035FF;
+    color: #FFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: capitalize;
+    font-family: 'Karla', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+
+
+}
