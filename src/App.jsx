@@ -6,6 +6,7 @@ export default function App()
 {
 
     const [dice,setDice] = React.useState(()=>newDiceArray())
+    const [gameEnd,setGameEnd] = React.useState(false)
 
 
     function newDiceArray(){
@@ -28,11 +29,16 @@ export default function App()
 
     function rollDice()
     {
-        setDice(prevDice => {
-            return prevDice.map(oldDice => {
-                return oldDice.isHeld ? oldDice : newDice()
+        if (gameEnd){
+            setDice(newDiceArray())
+            setGameEnd(false)
+        }else{
+            setDice(prevDice => {
+                return prevDice.map(oldDice => {
+                    return oldDice.isHeld ? oldDice : newDice()
+                })
             })
-        })
+        }
     }
     function toggleDie(id)
     {
@@ -41,6 +47,23 @@ export default function App()
         }))
     }
 
+    React.useEffect(()=>{
+        let comparableValue = dice[0].value;
+        let flag = false
+        for (let i = 0 ; i<dice.length ; i++){
+            if (!dice[i].isHeld){
+                flag = true;
+                break;
+            }else
+            {
+                if (dice[i].value !== comparableValue){
+                    flag = true
+                    break;
+                }
+            }
+        }
+        if (!flag) {setGameEnd(true)}
+    },[dice])
 
     return (
         <main>
@@ -52,7 +75,9 @@ export default function App()
             <section className="dice">
                 {diceElements}
             </section>
-            <button className="roll--btn" onClick={rollDice}>roll</button>
+            <button className="roll--btn" onClick={rollDice}>
+                {gameEnd ? "Reset Game" : "roll"}
+            </button>
         </main>
     )
 }
