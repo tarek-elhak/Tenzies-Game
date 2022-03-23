@@ -1,14 +1,14 @@
 import "./Die.css"
 
-export default function Die({id,value,isHeld,hold})
+export default function Die({id,value,isHeld,toggle})
 {
-    function holdDie()
+    function toggleDie()
     {
-        hold(id)
+        toggle(id)
     }
 
     return (
-        <div className={isHeld ? "die held" : "die"} onClick={holdDie}>
+        <div className={isHeld ? "die held" : "die"} onClick={toggleDie}>
             {value}
         </div>
     )

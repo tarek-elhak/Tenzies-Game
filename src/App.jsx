@@ -18,17 +18,17 @@ export default function App()
     }
 
     const diceElements = dice.map(die => {
-        return <Die key= {die.id} id={die.id} value={die.value} isHeld={die.isHeld} hold={hold}/>
+        return <Die key= {die.id} id={die.id} value={die.value} isHeld={die.isHeld} toggle={toggleDie}/>
     })
 
     function rollDice()
     {
         setDice(newDice)
     }
-    function hold(id)
+    function toggleDie(id)
     {
         setDice(dice.map(die => {
-            return die.id === id ? {...die,isHeld: true} : die
+            return die.id === id ? {...die,isHeld: !die.isHeld} : die
         }))
     }
 
