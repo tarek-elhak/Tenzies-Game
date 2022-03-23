@@ -1,6 +1,7 @@
 import React from "react"
 import "./App.css"
 import Die from "./components/Die"
+import {nanoid} from "nanoid"
 export default function App()
 {
 
@@ -11,7 +12,7 @@ export default function App()
         const dice = [];
 
         for(let i = 0 ; i <= 9 ; i++){
-            dice.push({id: i , value: Math.ceil(Math.random() * 6), isHeld: false})
+            dice.push({id: nanoid() , value: Math.ceil(Math.random() * 6), isHeld: false})
         }
         return dice;
     }
