@@ -2,6 +2,7 @@ import React from "react"
 import "./App.css"
 import Die from "./components/Die"
 import {nanoid} from "nanoid"
+import Confetti from "react-confetti";
 export default function App()
 {
 
@@ -57,6 +58,7 @@ export default function App()
 
     return (
         <main>
+            {gameEnd ? <Confetti /> : ""}
             <h2 className="title">Tenzies</h2>
             <p className="description">
                 Roll until all dice are the same.
@@ -66,7 +68,7 @@ export default function App()
                 {diceElements}
             </section>
             <button className="roll--btn" onClick={rollDice}>
-                {gameEnd ? "Reset Game" : "roll"}
+                {gameEnd ? "New Game" : "roll"}
             </button>
         </main>
     )
