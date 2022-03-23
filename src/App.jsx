@@ -11,18 +11,25 @@ export default function App()
         const dice = [];
 
         for(let i = 0 ; i <= 9 ; i++){
-            dice.push(Math.ceil(Math.random() * 6))
+            dice.push({id: i , value: Math.ceil(Math.random() * 6), isHeld: false})
         }
         return dice;
     }
 
-
-
-
-
-    const diceElements = dice.map((number,index) => {
-        return <Die key= {index} value={number} />
+    const diceElements = dice.map(die => {
+        return <Die key= {die.id} id={die.id} value={die.value} isHeld={die.isHeld} hold={hold}/>
     })
+
+    function rollDice()
+    {
+        setDice(newDice)
+    }
+    function hold(id)
+    {
+        setDice(dice.map(die => {
+            return die.id === id ? {...die,isHeld: true} : die
+        }))
+    }
 
 
     return (
@@ -35,7 +42,7 @@ export default function App()
             <section className="dice">
                 {diceElements}
             </section>
-            <button className="roll--btn">roll</button>
+            <button className="roll--btn" onClick={rollDice}>roll</button>
         </main>
     )
 }
