@@ -49,20 +49,10 @@ export default function App()
 
     React.useEffect(()=>{
         let comparableValue = dice[0].value;
-        let flag = false
-        for (let i = 0 ; i<dice.length ; i++){
-            if (!dice[i].isHeld){
-                flag = true;
-                break;
-            }else
-            {
-                if (dice[i].value !== comparableValue){
-                    flag = true
-                    break;
-                }
-            }
+        let result = dice.every((die)=> die.isHeld) && dice.every((die)=> die.value === comparableValue)
+        if (result){
+            setGameEnd(true)
         }
-        if (!flag) {setGameEnd(true)}
     },[dice])
 
     return (
